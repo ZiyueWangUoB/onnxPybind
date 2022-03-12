@@ -18,16 +18,15 @@ If you wish to not use cmake and just use Visual studio, however, you will need 
 
 ## Usage
 
-After building the DLL, you need to add Onnxruntime and OpenCV dlls to the sane kicatuib as the python extension file. 
+After building the DLL, you need to add Onnxruntime and OpenCV dlls to the same directory as the python extension file. 
+The model name currently needs to be edited in the C code.
 Then, in Python, usage is very simple. 
 
 ```
 import onnxPybind
 
 imagePath = "myImage.py"
-modelPath = "myModel.onnx"
 
-ortSession = onnxPybind.onnx_c(modelPath)
 outputs = ortSession.inference(imagePath)
 ```
 
@@ -35,3 +34,8 @@ outputs = ortSession.inference(imagePath)
 ## Possible problems
 
 When compiling for Release, you need to change the linker dependency to opencv_world455.dll, not the debug version.
+
+## TODO
+- [ ] Model name through python
+- [ ] Parsing image directly rather than reading from disk
+- [ ] Optimize speeds
