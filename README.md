@@ -11,3 +11,27 @@ Onnxruntime doesn't include a 32bit windows runtime for python, which is problem
 
 Haven't tried earlier builds but they should work (apart from maybe onnx).
 
+## Configuration
+Note, you will have to change the cmake to run on your computer. The paths will fail as I installed my packages in weird locations, meaning cmake couldn't find them. Also ORT was installed through Nuget, so the cmake will change depending on that. 
+
+If you wish to not use cmake and just use Visual studio, however, you will need to manually add the PyBind, Onnxruntime, OpenCV libraries to the project. There are many guides on stackoverflow for this. Also remember to link 32-bit python to the project. Because of this, I heavily recommend modifying the cmake file for to your installed library directories, configuring and then building. Otherwise it will be a hassle.
+
+## Usage
+
+After building the DLL, you need to add Onnxruntime and OpenCV dlls to the sane kicatuib as the python extension file. 
+Then, in Python, usage is very simple. 
+
+```
+import onnxPybind
+
+imagePath = "myImage.py"
+modelPath = "myModel.onnx"
+
+ortSession = onnxPybind.onnx_c(modelPath)
+outputs = ortSession.inference(imagePath)
+```
+
+
+## Possible problems
+
+When compiling for Release, you need to change the linker dependency to opencv_world455.dll, not the debug version.
