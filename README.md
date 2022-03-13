@@ -1,7 +1,7 @@
 # onnxPybind
 
 ## Introduction
-Onnxruntime doesn't include a 32bit windows runtime for python, which is problematic as many industry devices are still using 32bit windows. To circumvent this problem, this repository makes use of Pybind to create a dll which 32bit python can use for model inference. 
+Onnxruntime doesn't include a 32bit windows runtime for python (cpu), which is problematic as many industry devices are still using 32bit windows. To circumvent this problem, this repository makes use of Pybind to create a dll which 32bit python can use for model inference. 
 
 ## Dependencies
 
